@@ -41,6 +41,13 @@ export class GateGateway
     this.logger.log(`reset:`);
   }
 
+  @SubscribeMessage('resetSockeat')
+  handleMessageRaeset(client: Socket, payload: any): void {
+    console.log('payload', payload);
+    this.userService.update(payload.id, { socket_id: client.id });
+    this.logger.log(`reset:`);
+  }
+
   @SubscribeMessage('sendNoti')
   async handleMessageNoti(client: Socket, payload: any) {
     console.log('payload-noti', payload);
